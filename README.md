@@ -1,6 +1,6 @@
 # Holy Walkamole
 
-This is a website that is under work to serve as a support space for the 96,000 year long walking challenge at the Sri Sathya Sai Center of Fremont.
+This is a website that is under work to serve as a support space for the 96,000 km year long walking challenge at the Sri Sathya Sai Center of Fremont.
 
 ## Features
 
