@@ -1,23 +1,43 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AngularFireModule } from '@angular/fire';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireMessagingModule } from '@angular/fire/messaging';
 import { AngularFireStorageModule, BUCKET } from '@angular/fire/storage';
-import { AuthService } from './service/auth.service';
+import { AuthService } from './shared/services/auth.service';
 import { FormsModule } from '@angular/forms';
+import { Router, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './shared/guard/auth.guard';
 
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { CountDownComponent } from './count-down/count-down.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { SignInComponent } from './components/sign-in/sign-in.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 
+
+const appRoutes: Routes = [
+  {path: '', redirectTo: '/sign-in', pathMatch: 'full'},
+  {path: 'sign-in', component: SignInComponent},
+  {path: 'register-user', component: SignUpComponent},
+  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
+  {path: 'forgot-password', component: ForgotPasswordComponent},
+  {path: 'verify-email-address', component: VerifyEmailComponent}
+]
 @NgModule({
   declarations: [
     AppComponent,
-    CountDownComponent
+    CountDownComponent,
+    DashboardComponent,
+    SignInComponent,
+    SignUpComponent
   ],
   imports: [
+    RouterModule.forRoot(appRoutes),
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
@@ -25,11 +45,13 @@ import { CountDownComponent } from './count-down/count-down.component';
     AngularFireStorageModule,
     FormsModule
   ],
+  exports: [RouterModule],
   providers: [
     AuthService,
-    AngularFirestore,
+    AngularFirestoreModule,
     {provide: BUCKET, useValue: 'walkamoles-e8bbd.appspot.com'},
   ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
