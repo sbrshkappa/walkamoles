@@ -5,11 +5,13 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { AuthGuard } from '../shared/guard/auth.guard';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
+import { fromEventPattern } from 'rxjs';
 
 const routes: Routes = [
-    { path: '', redirectTo: '/sign-in', pathMatch: 'full' },
+    { path: '', component: LandingPageComponent, pathMatch: 'full' },
     { path: 'sign-in', component: SignInComponent },
     { path: 'register-user', component: SignUpComponent },
     { path: 'dashboard', component: DashboardComponent },

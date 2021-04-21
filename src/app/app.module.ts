@@ -14,6 +14,7 @@ import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { CountDownComponent } from './count-down/count-down.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
@@ -21,7 +22,7 @@ import { VerifyEmailComponent } from './components/verify-email/verify-email.com
 
 
 const appRoutes: Routes = [
-  {path: '', redirectTo: '/sign-in', pathMatch: 'full'},
+  {path: '', component: LandingPageComponent, pathMatch: 'full'},
   {path: 'sign-in', component: SignInComponent},
   {path: 'register-user', component: SignUpComponent},
   {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
@@ -34,7 +35,8 @@ const appRoutes: Routes = [
     CountDownComponent,
     DashboardComponent,
     SignInComponent,
-    SignUpComponent
+    SignUpComponent,
+    LandingPageComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
